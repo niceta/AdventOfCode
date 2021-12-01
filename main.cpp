@@ -18,7 +18,6 @@ int problem2() {
     int res = 0;
     int first = measurement[0] + measurement[1] + measurement[2];
     int second = measurement[1] + measurement[2] + measurement[3];
-    int counter = 0;
     for (size_t i = 1; i < measurement.size() - 1; ++i) {
         if (second > first) {
             ++res;
