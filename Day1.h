@@ -2,7 +2,7 @@
 #include "Utils.h"
 
 struct Day1 {
-    std::vector<int> measurement = read_measurements_from_file("measurements.txt");
+    std::vector<int> measurement = read_measurements_from_file("data/measurements.txt");
 
     int problem1() {
         int res = 0;
