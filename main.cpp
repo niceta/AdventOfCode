@@ -1,11 +1,11 @@
 #include <iostream>
 #include "Utils.h"
-#include "Day1.h"
+#include "Day2.h"
 
 using namespace std;
 
 int main() {
-    Day1 d1;
-    cout << d1.problem2();
+    Day2 d2;
+    cout << d2.problem2();
     return 0;
 }
