@@ -4,6 +4,7 @@
 
 using namespace std;
 
+
 int main() {
     Day3 d;
     cout << d.problem2();

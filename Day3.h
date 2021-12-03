@@ -1,5 +1,4 @@
 #pragma once
-#include <functional>
 #include "Utils.h"
 
 struct Day3 {
@@ -53,15 +52,13 @@ struct Day3 {
         return '\0';
     }
 
-    std::vector<int> get_rate(std::vector<std::string> data, char if_equal_bit) {
+    typedef char(Day3::* most_least_func_type)(const std::vector<std::string>&, int);
+
+    std::vector<int> get_rate(std::vector<std::string> data, most_least_func_type most_least_func, char if_equal_bit) {
         int bit = 0;
         while (data.size() > 1) {
-            char common_bit;
-            if (if_equal_bit == '1') {
-                common_bit = get_the_most_common_bit(data, bit);
-            } else {
-                common_bit = get_the_least_common_bit(data, bit);
-            }
+            char common_bit = (this->*most_least_func)(data, bit);
+            
             std::vector<std::string> temp;
             if (common_bit == '\0') {
                 for (const auto& number : data) {
@@ -87,11 +84,8 @@ struct Day3 {
     }
 
     int problem2() {
-        std::vector<std::string> oxygen = numbers;
-        std::vector<std::string> co2 = numbers;
-
-        std::vector<int> oxygen_rate = get_rate(oxygen, '1');
-        std::vector<int> co2_rate = get_rate(co2, '0');
+        std::vector<int> oxygen_rate = get_rate(numbers, &Day3::get_the_most_common_bit, '1');
+        std::vector<int> co2_rate = get_rate(numbers, &Day3::get_the_least_common_bit, '0');
 
         return get_decimal(oxygen_rate) * get_decimal(co2_rate);
     }
