@@ -6,6 +6,6 @@ using namespace std;
 
 int main() {
     Day3 d;
-    cout << d.problem1();
+    cout << d.problem2();
     return 0;
 }
