@@ -28,6 +28,7 @@ struct Day4 {
                     }
                 }
                 if (res_row == size) {
+                    is_won = true;
                     return true;
                 }
             }
@@ -41,6 +42,7 @@ struct Day4 {
                     }
                 }
                 if (res_col == size) {
+                    is_won = true;
                     return true;
                 }
             }
@@ -92,6 +94,7 @@ struct Day4 {
 
         size_t size = 5;
         vector<vector<Cell>> data;
+        bool is_won = false;
     };
    
     vector<size_t> bingo_nums = read_values<size_t>("data/bingo_nums.txt");
@@ -102,7 +105,6 @@ struct Day4 {
             for (auto& table : bingo_tables) {
                 if (table.is_in_the_table(num)) {
                     if (table.win_check()) {
-                        //cout << "num: " << num << " " << "res: " << table.get_amount_of_unchecked() * num << endl << table << endl;
                         cout << table;
                         return table.get_amount_of_unchecked() * num;
                     }
@@ -112,7 +114,18 @@ struct Day4 {
         return 0;
     }
 
-    int problem2() {
-        return 0;
+    size_t problem2() {
+        vector<pair<Table, size_t>> winline;
+        for (const auto num : bingo_nums) {
+            for (auto& table : bingo_tables) {
+                if (table.is_in_the_table(num)) {
+                    if (!table.is_won && table.win_check()) {
+                        winline.push_back({ table, num });
+                    }
+                }
+            }
+        }
+        size_t last = winline.size() - 1;
+        return winline[last].first.get_amount_of_unchecked() * winline[last].second;
     }
 };

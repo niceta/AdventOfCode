@@ -2,6 +2,6 @@
 
 int main() {
     Day4 d;
-    cout << d.problem1();
+    cout << d.problem2();
     return 0;
 }
