@@ -1,7 +1,7 @@
-#include "Day2.h"
+#include "Day4.h"
 
 int main() {
-    Day2 d;
+    Day4 d;
     cout << d.problem1();
     return 0;
 }

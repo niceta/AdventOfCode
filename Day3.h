@@ -2,7 +2,7 @@
 #include "Utils.h"
 
 struct Day3 {
-    vector<string> numbers = read_values_from_file<string>("data/binary_numbers.txt");
+    vector<string> numbers = read_values<string>("data/binary_numbers.txt");
 
     int problem1() {
         unsigned size = numbers[0].length();

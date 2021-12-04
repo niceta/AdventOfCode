@@ -2,7 +2,7 @@
 #include "Utils.h"
 
 struct Day1 {
-    vector<int> measurement = read_values_from_file<int>("data/measurements.txt");
+    vector<int> measurement = read_values<int>("data/measurements.txt");
 
     int problem1() {
         int res = 0;

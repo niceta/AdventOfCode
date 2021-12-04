@@ -4,11 +4,12 @@
 #include <string>
 #include <fstream>
 #include <utility>
+#include <iomanip>
 
 using namespace std;
 
 template<typename T>
-vector<T> read_values_from_file(const string& path) {
+vector<T> read_values(const string& path) {
     ifstream input(path);
     vector<T> res;
     if (input.is_open()) {
@@ -21,7 +22,7 @@ vector<T> read_values_from_file(const string& path) {
 }
 
 template<typename T, typename S>
-vector<pair<T, S>> read_paires_from_file(const string& path) {
+vector<pair<T, S>> read_paires(const string& path) {
     ifstream input(path);
     vector<pair<T, S>> res;
     if (input.is_open()) {
@@ -33,6 +34,11 @@ vector<pair<T, S>> read_paires_from_file(const string& path) {
         }
     }
     return res;
+}
+
+template<typename T> 
+vector<vector<T>> read_matrix(const string& path, size_t n, size_t m) {
+
 }
 
 int fast_pow(int val, int exp) {
