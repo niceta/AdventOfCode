@@ -5,11 +5,14 @@
 #include <fstream>
 #include <utility>
 
-std::vector<int> read_measurements_from_file(const std::string& path) {
-    std::ifstream input(path);
-    std::vector<int> res;
+using namespace std;
+
+template<typename T>
+vector<T> read_values_from_file(const string& path) {
+    ifstream input(path);
+    vector<T> res;
     if (input.is_open()) {
-        int val;
+        T val;
         while (input >> val) {
             res.push_back(val);
         }
@@ -17,44 +20,36 @@ std::vector<int> read_measurements_from_file(const std::string& path) {
     return res;
 }
 
-std::vector<std::pair<std::string, int>> read_movements_from_file(const std::string& path) {
-    std::ifstream input(path);
-    std::vector<std::pair<std::string, int>> res;
+template<typename T, typename S>
+vector<pair<T, S>> read_paires_from_file(const string& path) {
+    ifstream input(path);
+    vector<pair<T, S>> res;
     if (input.is_open()) {
-        std::string direction;
-        int val;
+        T first;
+        S second;
 
-        while (input >> direction >> val) {
-            res.push_back( {direction, val} );
+        while (input >> first >> second) {
+            res.push_back( {first, second} );
         }
     }
     return res;
 }
 
-std::vector<std::string> read_binary_from_file(const std::string& path) {
-    std::ifstream input(path);
-    std::vector<std::string> res;
-    if (input.is_open()) {
-        std::string val;
-        while (input >> val) {
-            res.push_back(val);
-        }
+int fast_pow(int val, int exp) {
+    if (exp == 0) {
+        return 1;
     }
-    return res;
+    if (exp % 2 == 0) {
+        return fast_pow(val * val, exp / 2);
+    } else {
+        return val * fast_pow(val, exp - 1);
+    }
 }
 
-int pow(int val, int exp) {
-    int res = 1;
-    for (int i = 1; i <= exp; ++i) {
-        res *= val;
-    }
-    return val;
-}
-
-int get_decimal(const std::vector<int>& binary) {
+int get_decimal(const vector<int>& binary) {
     int res = 0;
-    for (int i = 0; i < binary.size(); ++i) {
-        res += binary[i] * pow(2, binary.size() - 1 - i);
+    for (size_t i = 0; i < binary.size(); ++i) {
+        res += binary[i] * fast_pow(2, binary.size() - 1 - i);
     }
     return res;
 }

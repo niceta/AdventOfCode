@@ -2,7 +2,7 @@
 #include "Utils.h"
 
 struct Day2 {
-    std::vector<std::pair<std::string, int>> movements = read_movements_from_file("data/movements.txt");
+    vector<pair<string, int>> movements = read_paires_from_file<string, int>("data/movements.txt");
 
     int problem1() {
         int horizontal_pos = 0;
