@@ -5,7 +5,7 @@ struct Day4 {
     struct Cell {
         size_t val;
         bool isChecked;
-        friend istream& operator>> (std::istream& in, Cell& cell) {
+        friend istream& operator>> (istream& in, Cell& cell) {
             in >> cell.val;
             cell.isChecked = false;
             return in;
@@ -73,7 +73,7 @@ struct Day4 {
             return res;
         }
 
-        friend istream& operator>> (std::istream& in, Table& table) {
+        friend istream& operator>> (istream& in, Table& table) {
             for (size_t i = 0; i < table.size; ++i) {
                 for (size_t j = 0; j < table.size; ++j) {
                     in >> table.data[i][j];
@@ -82,7 +82,7 @@ struct Day4 {
             return in;
         }
 
-        friend ostream& operator<< (std::ostream& out, const Table& table) {
+        friend ostream& operator<< (ostream& out, const Table& table) {
             for (size_t i = 0; i < table.size; ++i) {
                 for (size_t j = 0; j < table.size; ++j) {
                     out << setw(2) << table.data[i][j].val << " ";
