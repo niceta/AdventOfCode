@@ -5,6 +5,7 @@
 #include <fstream>
 #include <utility>
 #include <iomanip>
+#include <algorithm>
 
 using namespace std;
 

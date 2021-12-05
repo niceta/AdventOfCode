@@ -1,6 +1,5 @@
 #pragma once
 #include "Utils.h"
-#include <algorithm>
 
 struct Day5 {
     Day5() {
@@ -37,14 +36,16 @@ struct Day5 {
         return res;
     }
 
-    int problem1() {
+    size_t problem1() {
         for (const auto& vent : vents) {
+            auto x_min_max = minmax(vent.x1, vent.x2);
+            auto y_min_max = minmax(vent.y1, vent.y2);
             if (vent.x1 == vent.x2) {
-                for (size_t y = min(vent.y1, vent.y2); y <= max(vent.y1, vent.y2); ++y) {
+                for (size_t y = y_min_max.first; y <= y_min_max.second; ++y) {
                     ++field[y][vent.x1];
                 }
             } else if (vent.y1 == vent.y2) {
-                for (size_t x = min(vent.x1, vent.x2); x <= max(vent.x1, vent.x2); ++x) {
+                for (size_t x = x_min_max.first; x <= x_min_max.second; ++x) {
                     ++field[vent.y1][x];
                 }
             }
@@ -59,7 +60,29 @@ struct Day5 {
         return check_field(field);
     }
 
-    int problem2() {
-        return 0;
+    size_t problem2() {
+        for (const auto& vent : vents) {
+            auto x_min_max = minmax(vent.x1, vent.x2);
+            auto y_min_max = minmax(vent.y1, vent.y2);
+            if (vent.x1 == vent.x2) {
+                for (size_t y = y_min_max.first; y <= y_min_max.second; ++y) {
+                    ++field[y][vent.x1];
+                }
+            } else if (vent.y1 == vent.y2) {
+                for (size_t x = x_min_max.first; x <= x_min_max.second; ++x) {
+                    ++field[vent.y1][x];
+                }
+            } else {
+                size_t x = vent.x1;
+                size_t y = vent.y1;
+                do {
+                    ++field[y][x];
+                    vent.x2 > vent.x1 ? ++x : --x;
+                    vent.y2 > vent.y1 ? ++y : --y;
+                } while (x != vent.x2 && y != vent.y2);
+                ++field[vent.y2][vent.x2];
+            }
+        }
+        return check_field(field);
     }
 };
