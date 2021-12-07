@@ -1,6 +1,5 @@
 #pragma once
 #include "Utils.h"
-#include <chrono>
 
 struct Day6 {
     vector<size_t> lanternfishes = read_values<size_t>("data/day6.txt");

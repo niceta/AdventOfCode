@@ -7,7 +7,8 @@
 #include <iomanip>
 #include <algorithm>
 #include <map>
-#include <unordered_map>
+#include <chrono>
+#include <limits> 
 
 using namespace std;
 
@@ -37,11 +38,6 @@ vector<pair<T, S>> read_paires(const string& path) {
         }
     }
     return res;
-}
-
-template<typename T> 
-vector<vector<T>> read_matrix(const string& path, size_t n, size_t m) {
-
 }
 
 int fast_pow(int val, int exp) {
