@@ -1,8 +1,8 @@
-#include "Day7.h"
+#include "Day8.h"
 #include <chrono>
 
 int main() {
-    Day7 d;
+    Day8 d;
     cout << d.problem2() << endl;
     return 0;
 }
